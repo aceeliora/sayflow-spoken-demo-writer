@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f0e7">
+    <meta name="description" content="Turn the details of your software project into a clear, timed spoken demo narration.">
+    <link rel="icon" href="/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Sayflow — Spoken Demo Writer</title>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">Skip to the narration workspace</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Sayflow home">
+        <img src="/logo.svg" alt="" width="38" height="38">
+        <span>sayflow<span class="brand-period">.</span></span>
+      </a>
+      <span class="header-note"><span class="live-dot" aria-hidden="true"></span> A clearer first take</span>
+    </header>
+
+    <main id="workspace">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">THE SPOKEN SIDE OF BUILDING</p>
+        <h1 id="page-title">Your project, <em>said clearly.</em></h1>
+        <p class="intro-copy">Turn the work you’ve done into a demo narration that sounds like you—not a release note.</p>
+      </section>
+
+      <div class="workbench">
+        <section class="input-panel panel" aria-labelledby="input-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="step-label">01 <span>·</span> YOUR MATERIAL</p>
+              <h2 id="input-heading">What should we say?</h2>
+            </div>
+            <span class="required-note"><span aria-hidden="true">*</span> Required</span>
+          </div>
+          <p class="panel-copy">Give Sayflow true details. It won’t invent experiences or results you didn’t provide.</p>
+
+          <form id="narration-form" novalidate>
+            <div class="field-group">
+              <label for="problem">The problem & your product <span aria-hidden="true">*</span></label>
+              <textarea id="problem" name="problem" rows="3" maxlength="4000" required placeholder="What real frustration led you to build this? What does the product do? Who else has the same problem?"></textarea>
+              <p class="field-hint">Keep it personal and specific. Include only what’s true for you.</p>
+            </div>
+
+            <div class="field-group">
+              <label for="demo">The live demo <span aria-hidden="true">*</span></label>
+              <textarea id="demo" name="demo" rows="3" maxlength="4000" required placeholder="What genuine input will you enter, what happens on screen, and what does that solve?"></textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="my-code">A code choice you made <span aria-hidden="true">*</span></label>
+              <textarea id="my-code" name="myCode" rows="3" maxlength="4000" required placeholder="Name a function or block you wrote. What does it do—and why did you write it this way?"></textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="ai-code">AI-generated code you understand <span aria-hidden="true">*</span></label>
+              <textarea id="ai-code" name="aiCode" rows="3" maxlength="4000" required placeholder="Point to a different AI-generated section. Why is its behavior correct? Be honest about what you understand."></textarea>
+            </div>
+
+            <div class="options-row">
+              <div class="field-group option-field">
+                <label for="duration">Target length</label>
+                <select id="duration" name="durationSeconds">
+                  <option value="60">1 minute</option>
+                  <option value="90">1 min 30 sec</option>
+                  <option value="120">2 minutes</option>
+                  <option value="180" selected>3 minutes · assignment format</option>
+                  <option value="240">4 minutes</option>
+                  <option value="300">5 minutes</option>
+                </select>
+              </div>
+              <div class="field-group option-field">
+                <label for="tone">Speaking style</label>
+                <select id="tone" name="tone">
+                  <option value="natural" selected>Natural</option>
+                  <option value="warm">Warm</option>
+                  <option value="confident">Confident</option>
+                  <option value="concise">Concise</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <p class="privacy-note"><span aria-hidden="true">↗</span> Your notes travel to Sayflow’s backend for this request only.</p>
+              <button class="primary-button" id="generate-button" type="submit">
+                <span>Shape my narration</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/></svg>
+              </button>
+            </div>
+            <p id="form-error" class="form-error" role="alert" hidden></p>
+          </form>
+        </section>
+
+        <section class="output-panel panel" aria-labelledby="output-heading" aria-live="polite">
+          <div class="output-topline">
+            <p class="step-label">02 <span>·</span> YOUR FIRST TAKE</p>
+            <span class="duration-badge" id="duration-badge">03:00 target</span>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="waveform-illustration" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <h2 id="output-heading">The mic is yours.</h2>
+            <p>Four honest details in. A clear first take out. Your narration will appear here, ready to edit or hear aloud.</p>
+            <div class="output-prompt"><span class="prompt-mark">“</span><span>Write it so you can say it naturally.</span></div>
+          </div>
+
+          <div id="loading-state" class="loading-state" hidden>
+            <div class="loading-wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <p>Finding the words for your work<span class="loading-ellipsis">…</span></p>
+            <span class="loading-caption">Keeping to your notes. Finding a natural pace.</span>
+          </div>
+
+          <div id="result-state" class="result-state" hidden>
+            <div class="result-title-row">
+              <div>
+                <p class="result-kicker">NARRATION DRAFT</p>
+                <h2 id="result-title" tabindex="-1">Your first take</h2>
+              </div>
+              <span id="word-count" class="word-count"></span>
+            </div>
+            <label class="sr-only" for="script-output">Editable generated narration script</label>
+            <textarea id="script-output" class="script-output" spellcheck="true" aria-describedby="script-note"></textarea>
+            <div class="script-meta">
+              <span id="speaking-time">About 00:00 spoken</span>
+              <span id="script-note">Edit anything that doesn’t sound like you.</span>
+            </div>
+            <div id="speech-support-note" class="speech-support-note" hidden></div>
+            <div class="playback-bar">
+              <div class="playback-buttons">
+                <button id="play-button" class="play-button" type="button" aria-label="Play narration">
+                  <svg class="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6V4Z" fill="currentColor"/></svg>
+                  <svg class="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4h3v12H6zM12 4h3v12h-3z" fill="currentColor"/></svg>
+                  <span id="play-label">Hear it</span>
+                </button>
+                <button id="stop-button" class="quiet-button" type="button" aria-label="Stop speech playback" disabled>Stop</button>
+              </div>
+              <div class="playback-actions">
+                <button id="copy-button" class="quiet-button" type="button">Copy script</button>
+                <button id="download-button" class="quiet-button" type="button">Download text</button>
+              </div>
+            </div>
+            <p id="playback-status" class="playback-status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="output-footer">
+            <span class="footer-wave" aria-hidden="true">〰</span>
+            <p>Sayflow keeps your words in your control.</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="timing-note" aria-label="Assignment timing guide">
+        <span class="timing-number">03:00</span>
+        <p><strong>A three-minute shape.</strong> About 90 seconds for the live demo, 60 for a code choice you made, and 30 for AI-generated code you understand. Adjust the fields to fit the truth.</p>
+        <span class="timing-rule" aria-hidden="true"></span>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Sayflow <span class="brand-period">/</span> Speak clearly. Stay yourself.</span>
+      <span>Made for the moment after “it works.”</span>
+    </footer>
+  </body>
+</html>

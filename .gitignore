@@ -1,0 +1,10 @@
+# Local credentials — never commit these
+.env
+.env.*
+!.env.example
+
+# Dependencies and runtime output
+node_modules/
+coverage/
+*.log
+.DS_Store

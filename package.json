@@ -1,0 +1,20 @@
+{
+  "name": "sayflow-spoken-demo-writer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Turn project details into a clear, timed software-demo narration.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "16.6.1",
+    "express": "4.21.2"
+  }
+}
