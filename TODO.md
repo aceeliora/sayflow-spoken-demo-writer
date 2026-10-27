@@ -28,11 +28,11 @@
 - [x] README identifies the live frontend and backend URLs, local setup, secret configuration, and health check.
 
 ## Public GitHub repository and self-review PR
-- [ ] A public GitHub repository contains the assignment source without secrets or committed `.env` files.
-- [ ] A feature branch is pushed and a pull request is opened against `main` as a self-review PR.
-- [ ] PR title follows `feat: [Product Name] — [one sentence problem statement]`.
-- [ ] PR description includes the specific problem in one sentence, live frontend URL, live backend URL, and confirmation that the API key exists only in backend environment variables.
-- [ ] The completed PR URL is available for submission.
+- [x] A public GitHub repository contains the assignment source without secrets or committed `.env` files.
+- [x] A feature branch is pushed and a pull request is opened against `main` as a self-review PR.
+- [x] PR title follows `feat: [Product Name] — [one sentence problem statement]`.
+- [x] PR description includes the specific problem in one sentence, live frontend URL, live backend URL, and confirmation that the API key exists only in backend environment variables.
+- [x] The completed PR URL is available for submission: https://github.com/aceeliora/sayflow-spoken-demo-writer/pull/1.
 
 ## Assignment video and public Drive link
 - [ ] A roughly three-minute video demonstrates the live app with genuine input, includes the submitter visibly on camera throughout, explains one self-written code section and why it was written that way, and points out one AI-generated code section the submitter understands.
